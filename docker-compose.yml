@@ -24,7 +24,7 @@ services:
       - jasperreports-network      
 
   postgres:
-    image: postgres:13
+    image: postgres:15
     environment:
       - POSTGRES_USER=jasperreports
       - POSTGRES_PASSWORD=jasperreportspass

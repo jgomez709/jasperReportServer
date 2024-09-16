@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  jasperserver:
+    image: bitnami/jasperreports:8.1.0
+    ports:
+      - '8080:8080'
+    environment:
+      - JASPERREPORTS_DATABASE_TYPE=postgresql
+      - JASPERREPORTS_DATABASE_HOST=postgres
+      - JASPERREPORTS_DATABASE_PORT_NUMBER=5432
+      - JASPERREPORTS_DATABASE_NAME=jasperreports
+      - JASPERREPORTS_DATABASE_USER=jasperreports
+      - JASPERREPORTS_DATABASE_PASSWORD=jasperreportspass
+      - JASPERREPORTS_USERNAME=jasperadmin
+      - JASPERREPORTS_PASSWORD=jasperadmin
+      - JAVA_OPTS=-Xms512m -Xmx1024m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m
+      - CATALINA_OPTS=-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true      
+    volumes:
+      - jasperreports_data:/bitnami/jasperreports           
+    depends_on:
+      - postgres
+    networks:
+      - jasperreports-network      
+
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=jasperreports
+      - POSTGRES_PASSWORD=jasperreportspass
+      - POSTGRES_DB=jasperreports
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jasperreports-network      
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=adminpassword
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres   
+    networks:
+      - jasperreports-network         
+
+volumes:
+  postgres_data:
+  jasperreports_data:
+networks:
+  jasperreports-network:
+    driver: bridge    

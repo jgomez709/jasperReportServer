@@ -1,4 +1,4 @@
-# JasperReportServer Installation using Docker
+# JasperReportServer 8.1.0 Installation using Docker
 
 This repository contains the necessary configurations to install JasperReportServer using Docker containers.
 
@@ -23,7 +23,7 @@ PGADMIN_DEFAULT_EMAIL=admin@example.com
 PGADMIN_DEFAULT_PASSWORD=adminpassword
 ```
 
-### 3. JasperReportServer
+### 3. JasperReportServer (8.1.0)
 
 Variable configuration (adjust as needed):
 

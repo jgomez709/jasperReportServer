@@ -15,7 +15,14 @@ services:
       - JASPERREPORTS_USERNAME=jasperadmin
       - JASPERREPORTS_PASSWORD=jasperadmin
       - JAVA_OPTS=-Xms512m -Xmx1024m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m
-      - CATALINA_OPTS=-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true      
+      - CATALINA_OPTS=-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true
+      - JASPERREPORTS_SMTP_HOST=smtp.gmail.com
+      - JASPERREPORTS_SMTP_PORT=465
+      - JASPERREPORTS_SMTP_EMAIL=tu-correo@gmail.com
+      - JASPERREPORTS_SMTP_USER=tu-correo@gmail.com
+      - JASPERREPORTS_SMTP_PASSWORD=tu-password
+      - JASPERREPORTS_SMTP_PROTOCOL=smtp
+      - JASPERREPORTS_SMTP_SSL_ENABLED=true     
     volumes:
       - jasperreports_data:/bitnami/jasperreports           
     depends_on:
